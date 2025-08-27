@@ -14,10 +14,18 @@ enum Grade{
 fn get_str(s:&str) -> String{
     format!("{}の関数です。",s)
 }
+fn good_str() -> String {
+    let good = String::from("Good");
+    good
+}
+fn bat_str(bat:&String){
+    println!("関数{}",bat);
+}
 fn main() {
     let hello= "Hello_tauri_World";
     println!("{}",hello);
     let mut var2:i32 = 987651;
+    println!("{}",var2);
     var2  = 54321;
     println!("variable2={}",var2);
     let mut array1:[u32;4] = [0,1,2,3];
@@ -59,4 +67,26 @@ fn main() {
         Grade::B => println!("合格"),
         _ => println!("不合格"),
     }
+
+    //所有権
+    let good1 = String::from("Good");
+    let good2 = good1.clone();
+    println!("{}",good1);
+    println!("{}",good2);
+
+    let good3 = 0;
+    let good4 = good3;
+    println!("{}",good3);
+    println!("{}",good4);
+
+    let good5 = good_str(); // → good_str(good5.clone());
+    println!("{}",good5);
+
+    let x = 5;
+    let y = x; // ここでは「ムーブ」ではなく「コピー」が起きる
+    println!("x = {}, y = {}", x, y); // エラーにならない
+
+    let bat = String::from("bat");
+    bat_str(&bat);
+    println!("メイン{}",bat); // エラーにならない
 }

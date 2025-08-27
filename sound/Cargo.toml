@@ -1,0 +1,9 @@
+[package]
+name = "sound"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+kira = "0.8.5" # サウンドのクレート
+native-dialog = "0.6.4" # ファイルダイアログのクレート
+
