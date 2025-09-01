@@ -15,7 +15,7 @@
         "title": "viewer",
         "width": 800,
         "height": 600,
-        "decorations": false
+        "decorations": true
       }
     ],
     "security": {
