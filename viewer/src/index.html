@@ -2,87 +2,14 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tauri File Reader</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 1em;
-    }
-    button {
-      font-size: 1rem;
-      padding: 0.5em 1em;
-      cursor: pointer;
-    }
-    pre {
-      margin-top: 1em;
-      padding: 1em;
-      background-color: #f4f4f4;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      white-space: pre-wrap; /* テキストがコンテナの幅で折り返すようにする */
-      word-wrap: break-word; /* 長い単語を強制的に改行する */
-      min-height: 100px;
-    }
-  </style>
+  <title>Tauri Image Viewer</title>
 </head>
 <body>
-
-  <h1>Tauri ファイル読み込みサンプル</h1>
-  
-  <button id="open-file-btn">ファイルを開く</button>
-
-  <h2>ファイルの内容:</h2>
-  <pre id="file-content">まだファイルが選択されていません。</pre>
-
-  <script>
-    // TauriのAPIにアクセスするために必要
-    const { dialog, fs } = window.__TAURI__;
-
-    // HTML要素を取得
-    const openFileBtn = document.getElementById('open-file-btn');
-    const fileContentEl = document.getElementById('file-content');
-
-    // ボタンにクリックイベントリスナーを追加
-    openFileBtn.addEventListener('click', async () => {
-      try {
-        // ファイル選択ダイアログを開く
-        const selectedPath = await dialog.open({
-          multiple: false,
-          filters: [
-            {
-              name: 'Text',
-              extensions: ['txt'],
-            },
-            {
-              name: 'All',
-              extensions: ['*'],
-            },
-          ],
-        });
-
-        // ユーザーがファイルを選択した場合（キャンセルされなかった場合）
-        if (selectedPath) {
-          console.log('Selected file:', selectedPath);
-          
-          // ファイルの内容をテキストとして読み込む
-          // ★注: ユーザーがダイアログで選択した絶対パスのファイルを読み込む場合、
-          // baseDirオプションは不要です。
-          const text = await fs.readTextFile(selectedPath);
-          
-          // 読み込んだ内容を<pre>タグに表示
-          fileContentEl.textContent = text;
-          console.log('File content loaded.');
-        } else {
-          console.log('User canceled the dialog.');
-        }
-      } catch (err) {
-        // エラーが発生した場合の処理
-        console.error('Error:', err);
-        fileContentEl.textContent = `エラーが発生しました: ${err}`;
-      }
-    });
-  </script>
-
+  <h1>Tauri 画像ビューア</h1>
+  <button id="open-btn">画像を開く</button>
+  <button id="save-btn">画像を保存</button>
+  <hr>
+  <canvas id="image-canvas" style="border: 1px solid black;"></canvas>
+  <script type="module" src="/main.js"></script>
 </body>
 </html>
