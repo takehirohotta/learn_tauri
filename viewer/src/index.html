@@ -5,11 +5,33 @@
   <title>Tauri Image Viewer</title>
 </head>
 <body>
-  <h1>Tauri 画像ビューア</h1>
-  <button id="open-btn">画像を開く</button>
-  <button id="save-btn">画像を保存</button>
-  <hr>
-  <canvas id="image-canvas" style="border: 1px solid black;"></canvas>
-  <script type="module" src="/main.js"></script>
-</body>
+    <header>
+      <h1>MaruArt</h1>
+      <button onClick="newImage()">新規</button>
+      <button onClick="openImage()">開く</button>
+      <button onClick="saveImage()">保存</button>
+      <button onClick="undoImage()">アンドゥ</button>
+    </header>
+    <div id="canvas">
+      <canvas></canvas>
+    </div>
+    <div id="ui">
+      <p>
+        赤 <input id="red" type="range" min="0" max="255" value="0" step="1"><br />
+        緑 <input id="green" type="range" min="0" max="255" value="0" step="1"><br />
+        青 <input id="blue" type="range" min="0" max="255" value="0" step="1"><br />
+      </p>
+      <p>
+        <div id="color"></div>
+      </p>
+      <p>
+        幅 <input onBlur="changeWidth(this)" type="text" id="width" name="width" required minlength="1" maxlength="4" size="11"><br />
+        高さ <input onBlur="changeHeight(this)" type="text" id="height" name="height" required minlength="1" maxlength="4" size="11"><br />
+      </p>
+      <p>
+        筆 <input id="pen" type="range" min="1" max="75" value="25" step="1"><br />
+      </p>
+    </div>
+    <script src="main.js"></script>
+  </body>
 </html>
